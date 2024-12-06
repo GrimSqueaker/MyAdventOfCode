@@ -1,0 +1,87 @@
+files: \.(py)$
+
+repos:
+  - repo: local
+    hooks:
+      - id: trailing-whitespace
+        name: trailing-whitespace
+        description: trims trailing whitespace.
+        entry: trailing-whitespace-fixer
+        language: python
+        types: [ text ]
+        stages: [ pre-commit, pre-push, manual ]
+        additional_dependencies: [ pre-commit-hooks==5.0.0 ]
+      - id: mixed-line-ending
+        name: mixed-line-ending
+        description: ensures that only LF line endings are used.
+        entry: mixed-line-ending
+        language: python
+        types: [ text ]
+        args: [ "--fix=lf" ]
+        additional_dependencies: [ pre-commit-hooks==5.0.0 ]
+      - id: end-of-file-fixer
+        name: end-of-file-fixer
+        description: ensures that a file is either empty, or ends with one newline.
+        entry: end-of-file-fixer
+        language: python
+        types: [ text ]
+        stages: [ pre-commit, pre-push, manual ]
+        additional_dependencies: [ pre-commit-hooks==5.0.0 ]
+      - id: isort
+        name: isort
+        description: isort your imports, so you don't have to
+        entry: isort
+        language: python
+        types: [ python ]
+        additional_dependencies: [ isort==5.13.2 ]
+      - id: mypy
+        name: mypy
+        description: Add type annotations to your Python programs
+        entry: mypy
+        language: python
+        types': [ python ]
+        args: [ "--ignore-missing-imports", "--scripts-are-modules" ]
+        require_serial: true
+        additional_dependencies: [ mypy==1.13.0 ]
+      - id: black
+        name: black
+        description: Black is the uncompromising Python code formatter.
+        entry: black
+        language: python
+        require_serial: true
+        types: [ python ]
+        additional_dependencies: [ black==24.10.0 ]
+      - id: ruff
+        name: ruff linter
+        description: An extremely fast Python linter and code formatter, written in Rust
+        entry: ruff check
+        language: python
+        types: [ python ]
+        args: []
+        require_serial: true
+        additional_dependencies: [ ruff==0.8.1 ]
+      - id: refurb
+        name: refurb
+        description: A tool for refurbishing and modernizing Python codebases
+        language: python
+        entry: refurb
+        types: [ python ]
+        require_serial: true
+        additional_dependencies: [ refurb==2.0.0, mypy==1.13.0 ]
+      - id: pylint
+        name: pylint
+        entry: pylint
+        description: Pylint is a static code analyser for Python
+        language: python
+        types: [ python ]
+        require_serial: true
+        additional_dependencies: [ pylint==3.3.2, pylint-pydantic==0.3.3 ]
+      - id: pytest
+        name: pytest
+        description: The pytest framework makes it easy to write small tests, yet scales to support complex functional testing for applications and libraries
+        entry: pytest aoc2024/tests
+        language: python
+        types: [ python ]
+        pass_filenames: false
+        always_run: true
+        additional_dependencies: [ pytest==8.3.4 ]

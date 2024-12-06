@@ -1,0 +1,17 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "ruff.enable": true,
+    "ruff.lint.enable": true,
+    "ruff.lint.args": [
+        "--line-length",
+        "120"
+    ],
+    "python.testing.pytestArgs": [
+        "aoc2024/tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
